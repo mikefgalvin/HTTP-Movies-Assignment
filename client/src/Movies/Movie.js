@@ -28,9 +28,9 @@ function Movie(props) {
     .delete(`http://localhost:5000/api/movies/${params.id}`)
     .then( res => {
       console.log('delete', res)
-      // props.setMovieList(res.data)
-      props.toggleLoad()
-      push(`/`)
+      props.setMovieList(res.data)
+      // push(`/`)
+      window.location.href = '/';
     })
     .catch(err => {
       console.log('error:', err)

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
+import MovieList from "./MovieList";
 
 const initialItem = {
   title: "",
@@ -49,22 +50,28 @@ const UpdateForm = props => {
     }
   };
 
-  const handleSubmit = e => {
+
+
+const handleSubmit = e => {
     e.preventDefault();
     // make a PUT request to edit the item
     console.log(item)
-    axios
+     axios 
       .put(`http://localhost:5000/api/movies/${id}`, item)
       .then(res => {
         console.log('res', res)
-        props.setMovieList(res.data)
-        push(`/movies/${id}`)
+        props.setMovieList([res.data])
+        // push(`/movies/${id}`)
+        window.location.href = `/movies/${id}`
+
 
       })
       .catch(err => {
         console.log(err)
       })
   };
+
+
 
   return (
     <div>
